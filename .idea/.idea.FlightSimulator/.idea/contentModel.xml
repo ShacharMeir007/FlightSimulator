@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\shachar\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\shachar\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_FlightSimulator.-1292570581.00" t="ExcludeRecursive" />
+    <e p="C:\Users\shachar\RiderProjects\FlightSimulator" t="IncludeFlat">
+      <e p="FlightSimulator.sln" t="IncludeFlat" />
+      <e p="FlightSimulatorApp" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="FlightSimulatorApp.csproj" t="IncludeRecursive" />
+        <e p="FlightSimulatorViewModel.cs" t="Include" />
+        <e p="GetCommend.cs" t="Include" />
+        <e p="GetCommendsList.cs" t="Include" />
+        <e p="ICommend.cs" t="Include" />
+        <e p="IFlightSimulatorModel.cs" t="Include" />
+        <e p="ITelnet.cs" t="Include" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="MyFlightSimulatorModel.cs" t="Include" />
+        <e p="MyTelnet.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="App.g.cs" t="Include" />
+            <e p="MainWindow.g.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Views" t="Include">
+          <e p="Dashboard.xaml" t="Include" />
+          <e p="Dashboard.xaml.cs" t="Include" />
+          <e p="Joystick.xaml" t="Include" />
+          <e p="Joystick.xaml.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
