@@ -1,0 +1,35 @@
+﻿<PropertyList>
+    <Delimiter>:</Delimiter>
+    <Property>
+        <name>altimeter_indicated-altitude-ft</name>
+        <node>/instrumentation/altimeter/indicated-altitude-ft</node>
+    </Property>
+    <Property>
+        <name>airspeed-indicator_indicated-speed-kt</name>
+        <node>/instrumentation/airspeed-indicator/indicated-speed-kt</node>
+    </Property>
+    <Property>
+        <name>attitude-indicator_internal-pitch-deg</name>
+        <node>/instrumentation/attitude-indicator/internal-pitch-deg</node>
+    </Property>
+    <Property>
+        <name>attitude-indicator_internal-roll-deg</name>
+        <node>/instrumentation/attitude-indicator/internal-roll-deg</node>
+    </Property>
+    <Property>
+        <name>indicated-heading-deg</name>
+        <node>/instrumentation/indicated-heading-deg</node>
+    </Property>
+    <Property>
+        <name>gps_indicated-vertical-speed</name>
+        <node>/instrumentation/gps/indicated-vertical-speed</node>
+    </Property>
+    <Property>
+        <name>gps_indicated-ground-speed-kt</name>
+        <node>/instrumentation/gps/indicated-ground-speed-kt</node>
+    </Property>
+    <Property>
+        <name>gps_indicated-altitude-ft</name>
+        <node>/instrumentation/gps/indicated-altitude-ft</node>
+    </Property>
+</PropertyList>

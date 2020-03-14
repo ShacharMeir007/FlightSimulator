@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            dash.DataContext = vm;
+            Dash.DataContext = vm;
             DataContext = vm;
             vm.AltimeterIndicatedAltitudeFt = "1";
             vm.AttitudeIndicatorInternalPitchDeg = "2";
@@ -34,6 +35,7 @@ namespace FlightSimulatorApp
             vm.GpsIndicatedGroundSpeedKt = "6";
             vm.GpsIndicatedVerticalSpeed = "7";
             vm.IndicatedHeadingDeg = "8";
+            vm.Start();
         }
 
         private void DashBoard_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +46,16 @@ namespace FlightSimulatorApp
         private void Joystick_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            vm.Stop();
+        }
+
+        private void MainWindow_OnClosed(object sender, EventArgs e)
+        {
+            vm.Stop();
         }
     }
 }

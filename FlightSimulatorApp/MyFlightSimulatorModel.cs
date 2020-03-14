@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.ComponentModel;
+using System.Windows.Documents;
+using System.Windows.Media;
+
 namespace FlightSimulatorApp
 {
     class MyFlightSimulatorModel : IFlightSimulatorModel
@@ -96,18 +99,18 @@ namespace FlightSimulatorApp
 
         public void Connect()
         {
-            throw new NotImplementedException();
+            telnet.Connect();
         }
 
         public void Disconnect()
         {
-            throw new NotImplementedException();
+            telnet.Disconnect();
         }
 
         public void Start()
         {
             this.run = true;
-            telnet.Connect();
+            
             new Thread(delegate() 
             {
                 while (run)
@@ -123,8 +126,50 @@ namespace FlightSimulatorApp
         //updates the values of the 
         private void HandleRead(string input)
         {
-            this.AirspeedIndicatorIndicatedSpeedKt = input;
+            XmlPropertiesAnalyzer analyzer = new XmlPropertiesAnalyzer();
+            List<string> values= new List<string>(input.Split(analyzer.Delimiter));
+            int min = Math.Min(analyzer.PropertiesOrder.Count, values.Count);
+            for (int i = 0; i < min; i++)
+            {
+                InsertValueToProperty(analyzer.PropertiesOrder[i], values[i]);
+            }
         }
+
+        private void InsertValueToProperty(string property, string value)
+        {
+            switch (property)
+            {
+                case "airspeed-indicator_indicated-speed-kt":
+                    this.AirspeedIndicatorIndicatedSpeedKt = value;
+                    break;
+                case "altimeter_indicated-altitude-ft":
+                    this.AltimeterIndicatedAltitudeFt = value;
+                    break;
+                case "attitude-indicator_internal-pitch-deg":
+                     this.AttitudeIndicatorInternalPitchDeg = value;
+                     break;
+                case "attitude-indicator_internal-roll-deg":
+                     this.AttitudeIndicatorInternalRollDeg = value;
+                     break;
+                case "indicated-heading-deg":
+                     this.IndicatedHeadingDeg = value;
+                     break;
+                case "gps_indicated-vertical-speed":
+                     this.GpsIndicatedVerticalSpeed = value;
+                     break;
+                case "gps_indicated-ground-speed-kt":
+                     this.GpsIndicatedGroundSpeedKt = value;
+                     break;
+                case "gps_indicated-altitude-ft":
+                     this.GpsIndicatedAltitudeFt = value;
+                     break;
+                default:
+                     break;
+                    
+            }
+        }
+        
+
         public void Stop()
         {
             this.run = false;

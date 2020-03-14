@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FlightSimulatorApp"
         xmlns:views="clr-namespace:FlightSimulatorApp.Views"
         mc:Ignorable="d"
-        Title="Flight Simulator App" Height="500" Width="800" Background="#2F8FF6" >
+        Title="Flight Simulator App" Height="500" Width="800" Background="#2F8FF6" Closing="MainWindow_OnClosing" Closed="MainWindow_OnClosed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <views:Dashboard x:Name="dash" Loaded="DashBoard_Loaded" Grid.Row="0" FontFamily="david" FontSize="40"/>
+            <views:Dashboard x:Name="Dash" Loaded="DashBoard_Loaded" Grid.Row="0" FontFamily="david" FontSize="40"/>
             <views:Joystick Padding="0,10,0,0" Loaded="Joystick_Loaded" VerticalAlignment="Bottom" Grid.Row="1"/>
         </Grid>
     </Grid>

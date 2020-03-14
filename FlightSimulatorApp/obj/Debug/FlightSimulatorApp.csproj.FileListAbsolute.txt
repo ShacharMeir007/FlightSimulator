@@ -17,3 +17,4 @@ C:\Users\shachar\RiderProjects\FlightSimulator\FlightSimulatorApp\obj\Debug\View
 C:\Users\shachar\RiderProjects\FlightSimulator\FlightSimulatorApp\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\shachar\RiderProjects\FlightSimulator\FlightSimulatorApp\obj\Debug\Views\Dashboard.baml
 C:\Users\shachar\RiderProjects\FlightSimulator\FlightSimulatorApp\obj\Debug\Views\Joystick.baml
+C:\Users\shachar\RiderProjects\FlightSimulator\FlightSimulatorApp\obj\Debug\FlightSimulatorApp_Content.g.cs

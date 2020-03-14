@@ -12,9 +12,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="FlightSimulatorApp.csproj" t="IncludeRecursive" />
         <e p="FlightSimulatorViewModel.cs" t="Include" />
-        <e p="GetCommend.cs" t="Include" />
-        <e p="GetCommendsList.cs" t="Include" />
-        <e p="ICommend.cs" t="Include" />
         <e p="IFlightSimulatorModel.cs" t="Include" />
         <e p="ITelnet.cs" t="Include" />
         <e p="MainWindow.xaml" t="Include" />
@@ -32,12 +29,14 @@
           <e p="Resources.Designer.cs" t="Include" />
           <e p="Resources.resx" t="Include" />
         </e>
+        <e p="Properties.xml" t="Include" />
         <e p="Views" t="Include">
           <e p="Dashboard.xaml" t="Include" />
           <e p="Dashboard.xaml.cs" t="Include" />
           <e p="Joystick.xaml" t="Include" />
           <e p="Joystick.xaml.cs" t="Include" />
         </e>
+        <e p="XmlPropertiesAnalyzer.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
