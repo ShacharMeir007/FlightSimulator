@@ -12,6 +12,7 @@ namespace FlightSimulatorApp
     class MyFlightSimulatorModel : IFlightSimulatorModel
     {
         private ITelnet telnet;
+        private XmlPropertiesAnalyzer _analyzer;
         private string indicatedHeadingDeg;
         private string gpsIndicatedVerticalSpeed;
         private string gpsIndicatedGroundSpeedKt;
@@ -25,6 +26,7 @@ namespace FlightSimulatorApp
         public MyFlightSimulatorModel(ITelnet telnet)
         {
             this.telnet = telnet ?? throw new ArgumentNullException(nameof(telnet));
+            this._analyzer = new XmlPropertiesAnalyzer();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -109,14 +111,19 @@ namespace FlightSimulatorApp
 
         public void Start()
         {
-            this.run = true;
+            run = true;
             
             new Thread(delegate() 
             {
                 while (run)
                 {
-                    string input = telnet.Read();
-                    HandleRead(input);
+                    int min = Math.Min(_analyzer.GetCommends.Count, 8);
+                    for (int i = 0; i < min; i++)
+                    {
+                        telnet.Write(_analyzer.GetCommends[i]);
+                        string value = telnet.Read();
+                        InsertValueToProperty(_analyzer.PropertiesOrder[i], value);
+                    }
                     Thread.Sleep(250);
                 }
                 telnet.Disconnect();

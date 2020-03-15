@@ -15,7 +15,6 @@ namespace FlightSimulatorApp
             this._model = model;
             this._model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs property)
             {
-                Console.WriteLine("norified " + property.PropertyName);
                 PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(property.PropertyName));
             };
         }

@@ -12,8 +12,8 @@ namespace FlightSimulatorApp
     {
         private TcpClient _client;
         private const int Port = 5600;
-        private XmlPropertiesAnalyzer _analyzer;
-        private bool _isConnected = false;
+        private readonly XmlPropertiesAnalyzer _analyzer;
+        private bool _isConnected;
 
         public MyTelnet()
         {
@@ -25,7 +25,7 @@ namespace FlightSimulatorApp
             _client = new TcpClient();
             try
             {
-                _client.Connect("localhost", 5600);
+                _client.Connect("localhost", Port);
                 _isConnected = true;
             }
             catch (Exception e)
@@ -46,32 +46,33 @@ namespace FlightSimulatorApp
         {
             if (!_isConnected)
             {
-                string errMsg = "";
+                string errMsg = String.Empty;
                 Random random = new Random();
-                for (int i = 0; i < 8; i++)
-                {
-                    errMsg += random.Next(1000).ToString() + _analyzer.Delimiter; 
-                }
-
+                errMsg += random.Next(1000).ToString();
                 return errMsg;
             }
-            string msg = "";
-            foreach (string getCommend in _analyzer.GetCommends)
-            {
-                Write(getCommend);
-                NetworkStream serverStream = _client.GetStream();
-                int size = _client.ReceiveBufferSize;
-                byte[] buffer = new byte[size];
-                serverStream.Read(buffer, 0, size);
-                msg += Encoding.ASCII.GetString(buffer);
-                msg += _analyzer.Delimiter;
-            }
+            string msg = String.Empty;
+            NetworkStream serverStream = _client.GetStream();
+            int size = _client.ReceiveBufferSize;
+            byte[] buffer = new byte[size];
+            int len = serverStream.Read(buffer, 0, size);
+            buffer[len] = 0;
+            msg = Encoding.Default.GetString(buffer,0,len);
             return msg;
         }
 
         public void Write(string msg)
         {
-            throw new NotImplementedException();
+            try
+            {
+                NetworkStream serverStream = _client.GetStream();
+                byte[] buffer = Encoding.ASCII.GetBytes(msg);
+                serverStream.Write(buffer,0,buffer.Length);
+            }
+            catch (Exception e)
+            { 
+                Console.WriteLine(e);
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<PropertyList>
-    <Delimiter>:</Delimiter>
+    <Delimiter>;</Delimiter>
     <Property>
         <name>altimeter_indicated-altitude-ft</name>
         <node>/instrumentation/altimeter/indicated-altitude-ft</node>
