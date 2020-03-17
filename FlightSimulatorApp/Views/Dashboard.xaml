@@ -19,15 +19,15 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding Path =AltimeterIndicatedAltitudeFt, Mode=TwoWay}" Grid.Column="0" />
-            <Label Content="{Binding Path =AttitudeIndicatorInternalPitchDeg, Mode=TwoWay}" Grid.Column="1"/>
-            <Label Content="{Binding Path =AttitudeIndicatorInternalRollDeg, Mode=TwoWay}" Grid.Column="2"/>
-            <Label Content="{Binding Path =AirspeedIndicatorIndicatedSpeedKt, Mode=TwoWay}" Grid.Column="3"/>
+            <Label Content="{Binding Path =AltimeterIndicatedAltitudeFt, Mode=TwoWay}" Grid.Column="0" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =AttitudeIndicatorInternalPitchDeg, Mode=TwoWay}" Grid.Column="1" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =AttitudeIndicatorInternalRollDeg, Mode=TwoWay}" Grid.Column="2" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =AirspeedIndicatorIndicatedSpeedKt, Mode=TwoWay}" Grid.Column="3" BorderThickness="4" BorderBrush="Black"/>
 
-            <Label Content="{Binding Path =GpsIndicatedAltitudeFt, Mode=TwoWay}" Grid.Column="0" Grid.Row="1"/>
-            <Label Content="{Binding Path =GpsIndicatedGroundSpeedKt, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
-            <Label Content="{Binding Path =GpsIndicatedVerticalSpeed, Mode=TwoWay}" Grid.Column="2" Grid.Row="1"/>
-            <Label Content="{Binding Path =IndicatedHeadingDeg, Mode=TwoWay}" Grid.Column="3" Grid.Row="1"/>
+            <Label Content="{Binding Path =GpsIndicatedAltitudeFt, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =GpsIndicatedGroundSpeedKt, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =GpsIndicatedVerticalSpeed, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" BorderThickness="4" BorderBrush="Black"/>
+            <Label Content="{Binding Path =IndicatedHeadingDeg, Mode=TwoWay}" Grid.Column="3" Grid.Row="1" BorderThickness="4" BorderBrush="Black"/>
             
         </Grid>
        
