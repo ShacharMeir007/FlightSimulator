@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp.Models;
+using FlightSimulatorApp.ViewModels;
 
 namespace FlightSimulatorApp
 {
@@ -21,21 +23,15 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        FlightSimulatorViewModel vm = new FlightSimulatorViewModel(new MyFlightSimulatorModel(new MyTelnet()));//initiate a real Model later
+        private readonly IFlightSimulatorModel _model = new Model(new MyTelnet());
+        
+
         public MainWindow()
         {
             InitializeComponent();
-            Dash.DataContext = vm;
-            DataContext = vm;
-            vm.AltimeterIndicatedAltitudeFt = "1";
-            vm.AttitudeIndicatorInternalPitchDeg = "2";
-            vm.AttitudeIndicatorInternalRollDeg = "3";
-            vm.AirspeedIndicatorIndicatedSpeedKt = "4";
-            vm.GpsIndicatedAltitudeFt = "5";
-            vm.GpsIndicatedGroundSpeedKt = "6";
-            vm.GpsIndicatedVerticalSpeed = "7";
-            vm.IndicatedHeadingDeg = "8";
-            vm.Start();
+            Dash.DataContext = new DashBoardViewModel(_model);
+            Joystick.DataContext = new JoystickViewModel(_model);
+            _model.Start();
         }
 
         private void DashBoard_Loaded(object sender, RoutedEventArgs e)
@@ -50,12 +46,12 @@ namespace FlightSimulatorApp
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            vm.Stop();
+            _model.Stop();
         }
 
         private void MainWindow_OnClosed(object sender, EventArgs e)
         {
-            vm.Stop();
+            
         }
     }
 }

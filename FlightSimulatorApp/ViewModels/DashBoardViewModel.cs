@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-namespace FlightSimulatorApp
+using FlightSimulatorApp.Models;
+
+namespace FlightSimulatorApp.ViewModels
 {
-    class FlightSimulatorViewModel:INotifyPropertyChanged
+    class DashBoardViewModel:IViewModel
     {
         private readonly IFlightSimulatorModel _model;
-        public FlightSimulatorViewModel(IFlightSimulatorModel model)
+        public DashBoardViewModel(IFlightSimulatorModel model)
         {
             this._model = model;
             this._model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs property)
@@ -21,52 +23,50 @@ namespace FlightSimulatorApp
 
         public void Start()
         {
-            this._model.Connect();
             this._model.Start();
         }
         public void Stop()
         {
             this._model.Stop();
-            this._model.Disconnect();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public String IndicatedHeadingDeg {
+        public string IndicatedHeadingDeg {
             get => _model.IndicatedHeadingDeg;
             set => _model.IndicatedHeadingDeg = value;
         }
-        public String GpsIndicatedVerticalSpeed
+        public string GpsIndicatedVerticalSpeed
         {
             get => _model.GpsIndicatedVerticalSpeed;
             set => _model.GpsIndicatedVerticalSpeed = value;
         }
-        public String GpsIndicatedGroundSpeedKt
+        public string GpsIndicatedGroundSpeedKt
         {
             get => _model.GpsIndicatedGroundSpeedKt;
             set => _model.GpsIndicatedGroundSpeedKt = value;
         }
-        public String AirspeedIndicatorIndicatedSpeedKt
+        public string AirspeedIndicatorIndicatedSpeedKt
         {
             get => _model.AirspeedIndicatorIndicatedSpeedKt;
             set => _model.AirspeedIndicatorIndicatedSpeedKt = value;
         }
-        public String GpsIndicatedAltitudeFt
+        public string GpsIndicatedAltitudeFt
         {
             get => _model.GpsIndicatedAltitudeFt;
             set => _model.GpsIndicatedAltitudeFt = value;
         }
-        public String AttitudeIndicatorInternalRollDeg
+        public string AttitudeIndicatorInternalRollDeg
         {
             get => _model.AttitudeIndicatorInternalRollDeg;
             set => _model.AttitudeIndicatorInternalRollDeg = value;
         }
-        public String AttitudeIndicatorInternalPitchDeg
+        public string AttitudeIndicatorInternalPitchDeg
         {
             get => _model.AttitudeIndicatorInternalPitchDeg;
             set => _model.AttitudeIndicatorInternalPitchDeg = value;
         }
-        public String AltimeterIndicatedAltitudeFt
+        public string AltimeterIndicatedAltitudeFt
         {
             get => _model.AltimeterIndicatedAltitudeFt;
             set => _model.AltimeterIndicatedAltitudeFt = value;

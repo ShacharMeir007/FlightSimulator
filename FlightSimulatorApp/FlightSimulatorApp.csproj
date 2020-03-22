@@ -50,6 +50,12 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Models\IFlightSimulatorModel.cs" />
+        <Compile Include="Models\Model.cs" />
+        <Compile Include="Properties\Annotations.cs" />
+        <Compile Include="ViewModels\DashBoardViewModel.cs" />
+        <Compile Include="ViewModels\IFlightSimulatorViewModel.cs" />
+        <Compile Include="ViewModels\JoystickViewModel.cs" />
         <Compile Include="Views\Dashboard.xaml.cs">
           <DependentUpon>Dashboard.xaml</DependentUpon>
         </Compile>
@@ -65,8 +71,6 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="FlightSimulatorViewModel.cs" />
-        <Compile Include="IFlightSimulatorModel.cs" />
         <Compile Include="ITelnet.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -76,7 +80,6 @@
         <Page Include="Views\Joystick.xaml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="MyFlightSimulatorModel.cs" />
         <Compile Include="MyTelnet.cs" />
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>

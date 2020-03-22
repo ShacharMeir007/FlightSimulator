@@ -5,99 +5,98 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using FlightSimulatorApp.Models;
+using FlightSimulatorApp.ViewModels;
 
 namespace FlightSimulatorApp.Views
 {
     public partial class Joystick : UserControl
     {
-       
         private bool _pressed;
         private bool _stoppedMoving = true;
-        private const int _latency = 30; 
+        private const int Latency = 40;
         public Joystick()
         {
             InitializeComponent();
+            KnobPosition.X = 20;
         }
+        
 
-        private void centerKnob_Completed(object sender, EventArgs e)
-        {
-            Storyboard storyboard = new Storyboard();
-            DoubleAnimation animation = new DoubleAnimation();
-        }
-
-        private void Knob_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void Base_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             this._pressed = true;
             Canvas c = sender as Canvas;
             Point p = e.GetPosition(c);
-            MoveKnob(p.X,p.Y,_latency);
+            MoveKnob(p.X,p.Y,Latency);
         }
 
-        private void Knob_OnMouseMove(object sender, MouseEventArgs e)
+        private void Base_OnMouseMove(object sender, MouseEventArgs e)
         {
             Canvas c = sender as Canvas;
             Point p = e.GetPosition(c);
             if (this._pressed && _stoppedMoving)
             {
-                MoveKnob(p.X,p.Y,_latency);
+                MoveKnob(p.X,p.Y,Latency);
             }
+
+            //Debug.Text = $"{KnobPosition.X}, {KnobPosition.Y}";
         }
 
-        private void Knob_OnMouseUP(object sender, MouseButtonEventArgs e)
+        private void Base_OnMouseUP(object sender, MouseButtonEventArgs e)
         {
             ResetKnob();
         }
 
-        private void Knob_OnMouseLeave(object sender, MouseEventArgs e)
+        private void Base_OnMouseLeave(object sender, MouseEventArgs e)
         {
             ResetKnob();
         }
 
         private void MoveKnob(double x, double y, int milli)
         {
-            double additionX = x - KnobBase.Width/2;
-            double additionY = y - KnobBase.Height/2;
-            int extended = 0;
-            double dist = Dist(knobPosition.X + additionX, knobPosition.Y + additionY, 0, 0);
+            double additionX = x - Base.Width/2;
+            double additionY = y - Base.Height/2;
+            double dist = Dist( additionX,  additionY, 0, 0);
             if ( dist >= 42)
             {
-                extended = 1;
-                Console.WriteLine();
-                
+                additionX *= 40 / dist;
+                additionY *= 40 / dist;
             }
             DoubleAnimation animationX = new DoubleAnimation();
             _stoppedMoving = false;
-            animationX.From = knobPosition.X;
-            animationX.To = (knobPosition.X + additionX)*Math.Pow(40 / dist,extended);
-            animationX.Completed += (sender, args) => { _stoppedMoving = true; };
+            animationX.From = KnobPosition.X;
+            animationX.To = additionX;
+            animationX.Completed += (sender, args) =>
+            {
+                _stoppedMoving = true;
+                KnobPosition.X = KnobPosition.X;
+                KnobPosition.Y = KnobPosition.Y;
+            };
             animationX.Duration = new Duration(new TimeSpan(0,0,0,0,milli));
             DoubleAnimation animationY = new DoubleAnimation();
-            animationY.From = knobPosition.Y;
-            animationY.To = (knobPosition.Y + additionY)*Math.Pow(40 / dist,extended);;
+            animationY.From = KnobPosition.Y;
+            animationY.To = additionY;
             animationY.Duration = new Duration(new TimeSpan(0,0,0,0,milli));
             
-            knobPosition.BeginAnimation(TranslateTransform.XProperty, animationX);
-            knobPosition.BeginAnimation(TranslateTransform.YProperty, animationY);
+            KnobPosition.BeginAnimation(TranslateTransform.XProperty, animationX);
+            KnobPosition.BeginAnimation(TranslateTransform.YProperty, animationY);
         }
 
         private void ResetKnob()
         {
             this._pressed = false;
-            DoubleAnimation animationX = new DoubleAnimation();
-            animationX.From = knobPosition.X;
-            animationX.To = 0;
-            animationX.Duration = new Duration(new TimeSpan(0,0,0,0,500));
-            DoubleAnimation animationY = new DoubleAnimation();
-            animationY.From = knobPosition.Y;
-            animationY.To = 0;
-            animationY.Duration = new Duration(new TimeSpan(0,0,0,0,500));
-            knobPosition.BeginAnimation(TranslateTransform.XProperty, animationX);
-            knobPosition.BeginAnimation(TranslateTransform.YProperty, animationY);
+            MoveKnob(Base.Width/2,Base.Height/2,500);
         }
 
         private double Dist(double x, double y, double x0, double y0)
         {
             return Math.Sqrt(Math.Pow(x - x0, 2) + Math.Pow(y - y0, 2));
         }
+
+        
+
+       
+
+        
     }
 }

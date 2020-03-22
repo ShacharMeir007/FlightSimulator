@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    interface ITelnet
+    public interface ITelnet
     {
         void Connect();
         string Read();
